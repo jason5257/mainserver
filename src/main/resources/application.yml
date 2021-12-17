@@ -1,0 +1,42 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  profiles:
+    active : local, default
+  application:
+    name: MainServer
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://postgres-database-1.crbd4ns4bkwp.ap-northeast-2.rds.amazonaws.com:5432/postgres
+    username: postgres
+    password: Ekdzhd5257!
+    driver-class-name: org.postgresql.Driver
+    validationQuery: SELECT 1
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+      minimum-idle: 1
+  jpa:
+    show-sql: true
+    open-in-view: true
+    properties:
+      hibernate:
+        format_sql: true
+        ddl-auto: validate
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      use-new-id-generator-mappings: false
+
+
+
+
+
+
+
