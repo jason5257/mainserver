@@ -7,11 +7,14 @@ import com.mainserver.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -20,10 +23,26 @@ public class RestApiController {
 
     private final TestRepository testRepository;
     private final ModelMapper modelMapper;
+    private final Environment env;
+
+    private static final String NEW_LINE = "\n";
+    private static final String NEW_LINE_BR = "<br>";
 
     @GetMapping("/rest")
     public String restapi() {
-        return "Hello My Server - " + LocalDateTime.now();
+        StringBuffer sf = new StringBuffer();
+
+        Map<String, String> senv = System.getenv();
+        System.out.println("senv = " + senv);
+
+        senv.forEach((s, s2) -> {
+            sf.append(s + " = " + s2 + NEW_LINE_BR);
+        });
+
+        sf.append("Hello My Server - " + LocalDateTime.now() + NEW_LINE_BR);
+        sf.append("env.getActiveProfiles() = " + String.join(", ", env.getActiveProfiles()) + NEW_LINE_BR);
+
+        return sf.toString();
     }
 
     @GetMapping("/api/test/{id}")

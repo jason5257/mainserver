@@ -12,15 +12,13 @@ spring:
     livereload:
       enabled: true
   datasource:
-    url: jdbc:postgresql://postgres-database-1.crbd4ns4bkwp.ap-northeast-2.rds.amazonaws.com:5432/postgres
-    username: postgres
-    password: Ekdzhd5257!
-    driver-class-name: org.postgresql.Driver
-    validationQuery: SELECT 1
     hikari:
-      connection-timeout: 60000
+      jdbc-url: jdbc:h2:mem:test
+      driver-class-name: org.h2.Driver
+      username: sa
       maximum-pool-size: 5
       minimum-idle: 1
+      pool-name: hikari
   jpa:
     show-sql: true
     open-in-view: true
@@ -33,10 +31,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       use-new-id-generator-mappings: false
-
-
-
-
-
+  h2:
+    console:
+      enabled: true
 
 
