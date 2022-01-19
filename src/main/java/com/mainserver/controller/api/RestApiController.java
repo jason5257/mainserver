@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -28,7 +26,7 @@ public class RestApiController {
     private static final String NEW_LINE = "\n";
     private static final String NEW_LINE_BR = "<br>";
 
-    @GetMapping("/rest")
+    @RequestMapping(value = {"/", "/rest"}, method = RequestMethod.GET)
     public String restapi() {
         StringBuffer sf = new StringBuffer();
 
