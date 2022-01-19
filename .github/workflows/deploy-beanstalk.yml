@@ -3,7 +3,7 @@ name: my-main-webserver
 on:
   push:
     branches:
-      - master
+      - develop
   workflow_dispatch: # 수동 실행
 
 jobs:
